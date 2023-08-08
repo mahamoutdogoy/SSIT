@@ -14,13 +14,14 @@ import EditVitreFumee from "./pages/EditVitreFumee";
 import AddPenalty from './pages/AddPenalty';
 import Penalties from './pages/Penalties';
 import EditPenalty from './pages/EditPenalty';
-import Penaltiess from './pages/Penaltiess'
+import Penaltiess from './pages/Amandes'
 import PoliceStations from './pages/PoliceStations';
 import AddPoliceStation from './pages/AddPoliceStation';
 import EditPoliceStaion from './pages/EditPoliceStation';
 import Account from './pages/Account';
 import ViewVitreFumee from './components/ViewVitreFumee';
 import ViewVitreFumeeOne from './pages/ViewVitreFumeeOne';
+import Amandes from './pages/Amandes';
 
 
 function App() {
@@ -44,7 +45,8 @@ function App() {
           <Route path="/penalties/add" element={<AddPenalty />} />
           <Route path="/penalties" element={<Penalties />} />
           <Route path="/penalties/edit/:id" element={<EditPenalty/>} />
-          <Route path="/penaltiess" element={<Penaltiess />} />
+          <Route path="/amandes" element={<Amandes />} />
+          <Route path="/amandes/edit/:id" element={<Amandes />} />
           <Route path="/policeStations/add" element={<AddPoliceStation />} />
           <Route path="/policeStations/edit/:id" element={<EditPoliceStaion />} />
           <Route path="/policeStations" element={<PoliceStations />} />

@@ -1,0 +1,17 @@
+.amande-status {
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .activeStatus {
+    background-color: green;
+    color: white;
+  }
+  
+  .inactiveStatus {
+    background-color: red;
+    color: white;
+  }
+  

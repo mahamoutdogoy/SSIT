@@ -46,7 +46,38 @@ export const getAmandes= async (req, res) =>{
         res.status(200).json(response);
     } catch (error) {
         res.status(500).json({msg: error.message});
-    }
+    }   
+}
+
+
+
+export const updateAmande = async(req, res) =>{
+  try {
+      const amande = await Amandes.findOne({
+          where:{
+              uuid: req.params.id
+          }
+      });
+      if(!amande) return res.status(404).json({msg: "Data not found"});
+      const {uuid,  plaque ,userId,PTypeId,status,lat,long,image} = req.body;
+      if(req.role === "admin"){
+          await Amandes.update({uuid,plaque ,userId,PTypeId,status,lat,long,image},{
+              where:{
+                  id: amande.id
+              }
+          });
+      }else{
+          if(req.userId !== amande.userId) return res.status(403).json({msg: " access Forbidden"});
+          await Amandes.update({plaque ,userId,PTypeId,status,lat,long,image},{
+              where:{
+                  [Op.and]:[{id: amande.id}, {userId: req.userId}]
+              }
+          });
+      }
+      res.status(200).json({msg: "Amande updated successfully"});
+  } catch (error) {
+      res.status(500).json({msg: error.message});
+  }
 }
 
 

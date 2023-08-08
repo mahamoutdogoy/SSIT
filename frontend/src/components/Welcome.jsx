@@ -47,7 +47,7 @@ const Welcome = () => {
   const [totalUsers, setTotalUsers] = useState(0);
   const [totalVitreFumees, setTotalVitreFumees] = useState(0);
   const [totalVehicules, setTotalVehicules] = useState(0);
-  const [totalPaidPenalties, setTotalPaidPenalties] = useState(10);
+  const [totalPaidPenalties, setTotalPaidPenalties] = useState(27);
   const [totalUnpaidPenalties, setTotalUnpaidPenalties] = useState(30);
 
   useEffect(() => {

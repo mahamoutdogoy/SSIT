@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { getMe } from "../features/authSlice";
 import PenaltyListFromApp from "../components/PenaltyListFromApp";
 
-const Penalties = () => {
+const Amandes = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
@@ -26,4 +26,4 @@ const Penalties = () => {
   );
 };
 
-export default Penalties;
+export default Amandes;

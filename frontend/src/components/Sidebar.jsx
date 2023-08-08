@@ -86,11 +86,11 @@ const Sidebar = () => {
             </MenuLink>
           </MenuItem>
             <MenuItem>
-              <MenuLink to={"/penaltiess"}>
+              <MenuLink to={"/amandes"}>
                 <Icon>
                   <IoCashOutline />
                 </Icon>
-                Penalties
+                Amandes
               </MenuLink>
             </MenuItem>
         </ul>

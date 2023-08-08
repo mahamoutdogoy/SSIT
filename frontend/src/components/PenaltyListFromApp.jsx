@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { Input, Pagination, Select } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import './VitreStatus.css'
+import './AmandeStatus.css'
 
 const { Option } = Select;
 
@@ -54,7 +54,40 @@ const PenaltyList = () => {
     setFilteredAmandes(filteredData);
   };
 
-
+  // const toggleAmandeStatus = async (amande) => {
+  //   try {
+  //     const updatedAmande = { ...amande, status: !amande.status };
+  //     await axios.put(`http://localhost:5000/amandes/${amande.uuid}`, updatedAmande);
+  //     getAmandes();
+  //   } catch (error) {
+  //     console.error('Error updating status:', error);
+  //   }
+  // };
+  
+  
+  const toggleAmandeStatus = async (amandeId) => {
+    try {
+      const response = await axios.patch(`http://localhost:5000/amandes/${amandeId}`, {
+        status: !filteredAmandes.find(amande => amande.uuid === amandeId).status
+      });
+  
+      // Assuming the response contains the updated status
+      const updatedStatus = response.data.status;
+  
+      // Update the status in the filteredAmandes state
+      setFilteredAmandes(prevAmandes =>
+        prevAmandes.map(amande =>
+          amande.uuid === amandeId ? { ...amande, status: updatedStatus } : amande
+        )
+      );
+  
+      toast.success('Status updated successfully');
+    } catch (error) {
+      toast.error('An error occurred while updating status');
+    }
+  };
+  
+  
 
   const handlePostsPerPageChange = (value) => {
     setPostsPerPage(value);
@@ -97,6 +130,7 @@ const PenaltyList = () => {
              <th>Longitude</th>
              <th>Amount</th>
              <th>Created By</th>
+             <th>Status</th>
              <th>Actions</th>
           </tr>
         </thead>
@@ -110,6 +144,15 @@ const PenaltyList = () => {
                {/* Display the associated amount */}
                <td>{amande.penalty.amount}</td>
                <td>{amande.user.name}</td>
+               <td>
+      <span
+        className={`amande-status ${amande.status ? 'activeStatus' : 'inactiveStatus'}`}
+        onClick={() => toggleAmandeStatus(amande)}
+        style={{ cursor: 'pointer' }}
+      >
+        {amande.status ? 'Paid' : 'Unpaid'}
+      </span>
+    </td>
             
               <td>
                 {/* <Link
